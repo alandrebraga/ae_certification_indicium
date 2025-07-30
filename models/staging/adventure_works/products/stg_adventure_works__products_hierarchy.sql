@@ -7,7 +7,7 @@ with
         select * from {{ ref("base_adventure_works__subcategory") }}
     )
 
-    product_hierarchy as (
+    , product_hierarchy as (
         select 
             product_subcategory.product_subcategory_id as product_hierarchy_id
             , product_category.product_category_name
