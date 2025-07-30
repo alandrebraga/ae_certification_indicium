@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: adventure_works
+    database: fea24_11  
+    schema: raw_adventure_works 
+    tables:
+      - name: product
+      - name: ProductSubcategory
+      - name: ProductCategory
