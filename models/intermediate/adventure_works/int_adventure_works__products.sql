@@ -9,7 +9,8 @@ with
 
     , joined_table as (
         select 
-            products.product_id
+            {{ dbt_utils.generate_surrogate_key(['products.product_id']) }} as product_sk
+            , products.product_id
             , products.product_name
             , products.standart_cost
             , products.selling_price
