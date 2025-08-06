@@ -9,8 +9,8 @@ source as (
 renamed as (
 
     select
-        productcategoryid as product_category_id
-        ,name as product_category_name
+        cast(productcategoryid as string) as product_category_id
+        ,cast(name as string) as product_category_name
     from source
 
 )

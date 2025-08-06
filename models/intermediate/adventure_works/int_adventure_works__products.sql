@@ -13,8 +13,6 @@ with
             , products.product_name
             , products.standart_cost
             , products.selling_price
-            , products.product_line
-            , products.product_style
             , products.product_hierarchy_id
             , product_hierarchy.product_category_name
             , product_hierarchy.product_subcategory_name
