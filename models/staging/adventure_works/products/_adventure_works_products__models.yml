@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: stg_adventure_works__products
+    columns:
+      - name: product_id
+        tests:
+          - not_null
+          - unique
+      - name: product_hierarchy_id
+        tests:
+          - not_null
+          
+  - name: stg_adventure_works__products_hierarchy
+    columns:
+      - name: product_hierarchy_id
+        tests:
+          - not_null
+          - unique
+
