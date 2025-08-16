@@ -6,15 +6,7 @@ with
     , person as (
         select * from {{ ref('stg_adventure_works__person') }}
     )
-
-    , customer_territories as (
-        select * from {{ ref('stg_adventure_works__customer_addresses') }}
-    )
-
-    , territories as (
-        select * from {{ ref('stg_adventure_works__territories') }}
-    )
-
+ 
     , state_provinces as (
         select * from {{ ref('stg_adventure_works__state_provinces') }}
     )
@@ -37,8 +29,6 @@ with
             , country_regions.country_region_name as country
         from customers
         left join person on person.person_id = customers.person_id
-        left join customer_territories on customer_territories.customer_id = customers.customer_id
-        left join territories on territories.territory_id = customer_territories.territory_id
         left join state_provinces on state_provinces.country_region_code = territories.country_region_code
         left join country_regions on country_regions.country_region_code = territories.country_region_code
     )

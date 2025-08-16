@@ -22,5 +22,4 @@ sources:
       - name: employee
       - name: creditcard
       - name: salesorderheadercreditcard
-      - name: territory
-      - name: customerterritory
+      - name: salesterritory

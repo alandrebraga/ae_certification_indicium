@@ -11,7 +11,6 @@ with
             , cast(orderqty as integer) as order_qty
             , cast(unitprice as float) as unit_price
             , cast(unitpricediscount as float) as unit_price_discount
-            , cast(linetotal as float) as line_total
         from source
     )
 
