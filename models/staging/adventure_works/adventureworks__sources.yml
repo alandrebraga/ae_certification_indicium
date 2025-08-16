@@ -11,3 +11,16 @@ sources:
       - name: customer
       - name: person
       - name: persontype
+      - name: salesorderheader
+      - name: salesorderdetail
+      - name: salesreason
+      - name: salesorderheadersalesreason
+      - name: address
+      - name: stateprovince
+      - name: countryregion
+      - name: salesperson
+      - name: employee
+      - name: creditcard
+      - name: salesorderheadercreditcard
+      - name: territory
+      - name: customerterritory

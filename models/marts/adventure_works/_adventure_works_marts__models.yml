@@ -1,0 +1,142 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "Customer dimension table containing customer information, location, and territory details"
+    columns:
+      - name: customer_sk
+        description: "Surrogate key for customer dimension"
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        description: "Business key for customer"
+        tests:
+          - not_null
+      - name: customer_name
+        description: "Full name of the customer"
+        tests:
+          - not_null
+      - name: state
+        description: "State or province where customer is located"
+      - name: country
+        description: "Country where customer is located"
+      - name: territory_name
+        description: "Sales territory name"
+
+  - name: dim_salespeople
+    description: "Salespeople dimension table containing salesperson information, performance metrics, and territory details"
+    columns:
+      - name: salesperson_sk
+        description: "Surrogate key for salesperson dimension"
+        tests:
+          - not_null
+          - unique
+      - name: business_entity_id
+        description: "Business key for salesperson"
+        tests:
+          - not_null
+      - name: salesperson_name
+        description: "Full name of the salesperson"
+        tests:
+          - not_null
+      - name: sales_quota
+        description: "Sales quota for the salesperson"
+      - name: commission_pct
+        description: "Commission percentage for the salesperson"
+
+  - name: dim_sales_reasons
+    description: "Sales reasons dimension table containing sales reason information and categorization"
+    columns:
+      - name: sales_reason_id
+        description: "Business key for sales reason"
+        tests:
+          - not_null
+          - unique
+      - name: sales_reason_name
+        description: "Name of the sales reason"
+        tests:
+          - not_null
+      - name: reason_type
+        description: "Type/category of the sales reason"
+
+  - name: dim_credit_cards
+    description: "Credit cards dimension table containing credit card information and types"
+    columns:
+      - name: credit_card_id
+        description: "Business key for credit card"
+        tests:
+          - not_null
+          - unique
+      - name: card_type
+        description: "Type of credit card"
+        tests:
+          - not_null
+      - name: card_number
+        description: "Masked credit card number"
+
+  - name: dim_products
+    description: "Products dimension table containing product information and hierarchy"
+    columns:
+      - name: product_sk
+        description: "Surrogate key for product dimension"
+        tests:
+          - not_null
+          - unique
+      - name: product_id
+        description: "Business key for product"
+        tests:
+          - not_null
+      - name: product_name
+        description: "Name of the product"
+        tests:
+          - not_null
+      - name: product_category_name
+        description: "Product category name"
+      - name: product_subcategory_name
+        description: "Product subcategory name"
+
+  - name: fact_sales
+    description: "Sales fact table containing all sales transactions with metrics for business analysis"
+    columns:
+      - name: sales_order_detail_sk
+        description: "Surrogate key for sales order detail"
+        tests:
+          - not_null
+          - unique
+      - name: sales_order_id
+        description: "Business key for sales order"
+        tests:
+          - not_null
+      - name: customer_sk
+        description: "Foreign key to customer dimension"
+        tests:
+          - not_null
+      - name: product_sk
+        description: "Foreign key to product dimension"
+        tests:
+          - not_null
+      - name: order_date
+        description: "Date when the order was placed"
+        tests:
+          - not_null
+      - name: order_qty
+        description: "Quantity ordered"
+        tests:
+          - not_null
+      - name: unit_price
+        description: "Unit price of the product"
+        tests:
+          - not_null
+      - name: gross_amount
+        description: "Gross amount (unit price * quantity)"
+        tests:
+          - not_null
+      - name: net_amount
+        description: "Net amount after discounts"
+        tests:
+          - not_null
+      - name: total_discount_amount
+        description: "Total discount amount applied"
+      - name: order_status_description
+        description: "Human-readable order status description"
