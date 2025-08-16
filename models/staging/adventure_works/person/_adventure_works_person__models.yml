@@ -1,0 +1,125 @@
+version: 2
+
+models:
+  - name: stg_adventure_works__person
+    description: "Staging model for person information"
+    columns:
+      - name: person_id
+        description: "Unique identifier for person"
+        tests:
+          - not_null
+          - unique
+      - name: person_type
+        description: "Type of person"
+        tests:
+          - not_null
+      - name: person_name
+        description: "Full name of the person"
+        tests:
+          - not_null
+
+  - name: stg_adventure_works__employees
+    description: "Staging model for employee information"
+    columns:
+      - name: business_entity_id
+        description: "Unique identifier for employee"
+        tests:
+          - not_null
+          - unique
+      - name: national_id_number
+        description: "National ID number"
+        tests:
+          - not_null
+      - name: login_id
+        description: "Login ID for employee"
+        tests:
+          - not_null
+      - name: job_title
+        description: "Job title of employee"
+        tests:
+          - not_null
+      - name: birth_date
+        description: "Birth date of employee"
+        tests:
+          - not_null
+      - name: marital_status
+        description: "Marital status"
+        tests:
+          - not_null
+      - name: gender
+        description: "Gender of employee"
+        tests:
+          - not_null
+      - name: hire_date
+        description: "Date when employee was hired"
+        tests:
+          - not_null
+      - name: is_salaried
+        description: "Flag indicating if employee is salaried"
+        tests:
+          - not_null
+      - name: is_current
+        description: "Flag indicating if employee is current"
+        tests:
+          - not_null
+
+  - name: stg_adventure_works__addresses
+    description: "Staging model for address information"
+    columns:
+      - name: address_id
+        description: "Unique identifier for address"
+        tests:
+          - not_null
+          - unique
+      - name: address_line_1
+        description: "Primary address line"
+        tests:
+          - not_null
+      - name: address_line_2
+        description: "Secondary address line"
+      - name: city
+        description: "City name"
+        tests:
+          - not_null
+      - name: state_province_id
+        description: "Reference to state/province"
+        tests:
+          - not_null
+      - name: postal_code
+        description: "Postal/ZIP code"
+
+  - name: stg_adventure_works__state_provinces
+    description: "Staging model for state/province information"
+    columns:
+      - name: state_province_id
+        description: "Unique identifier for state/province"
+        tests:
+          - not_null
+          - unique
+      - name: state_province_code
+        description: "State/province code"
+        tests:
+          - not_null
+      - name: state_province_name
+        description: "Name of state/province"
+        tests:
+          - not_null
+      - name: country_region_code
+        description: "Reference to country/region"
+        tests:
+          - not_null
+      - name: is_only_state_province
+        description: "Flag indicating if this is only a state/province"
+
+  - name: stg_adventure_works__country_regions
+    description: "Staging model for country/region information"
+    columns:
+      - name: country_region_code
+        description: "Unique identifier for country/region"
+        tests:
+          - not_null
+          - unique
+      - name: country_region_name
+        description: "Name of country/region"
+        tests:
+          - not_null

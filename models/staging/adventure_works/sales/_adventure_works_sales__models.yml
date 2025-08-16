@@ -1,0 +1,161 @@
+version: 2
+
+models:
+  - name: stg_adventure_works__customers
+    description: "Staging model for customers with person and territory information"
+    columns:
+      - name: customer_id
+        description: "Unique identifier for customer"
+        tests:
+          - not_null
+          - unique
+      - name: person_id
+        description: "Reference to person table"
+        tests:
+          - unique
+      - name: store_id
+        description: "Reference to store"
+      - name: territory_id
+        description: "Reference to territory"
+
+  - name: stg_adventure_works__sales_orders
+    description: "Staging model for sales order headers"
+    columns:
+      - name: sales_order_id
+        description: "Unique identifier for sales order"
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        description: "Reference to customer"
+        tests:
+          - not_null
+      - name: salesperson_id
+        description: "Reference to salesperson"
+      - name: territory_id
+        description: "Reference to territory"
+      - name: credit_card_id
+        description: "Reference to credit card"
+      - name: order_date
+        description: "Date when order was placed"
+        tests:
+          - not_null
+      - name: due_date
+        description: "Due date for order"
+      - name: ship_date
+        description: "Ship date for order"
+      - name: order_status
+        description: "Status of the order"
+        tests:
+          - not_null
+
+  - name: stg_adventure_works__sales_order_details
+    description: "Staging model for sales order line items"
+    columns:
+      - name: sales_order_id
+        description: "Reference to sales order"
+        tests:
+          - not_null
+      - name: sales_order_detail_id
+        description: "Unique identifier for order detail line"
+        tests:
+          - not_null
+          - unique
+      - name: product_id
+        description: "Reference to product"
+        tests:
+          - not_null
+      - name: order_qty
+        description: "Quantity ordered"
+        tests:
+          - not_null
+      - name: unit_price
+        description: "Unit price of product"
+        tests:
+          - not_null
+      - name: unit_price_discount
+        description: "Discount applied to unit price"
+
+  - name: stg_adventure_works__sales_reasons
+    description: "Staging model for sales reasons"
+    columns:
+      - name: sales_reason_id
+        description: "Unique identifier for sales reason"
+        tests:
+          - not_null
+          - unique
+      - name: sales_reason_name
+        description: "Name of the sales reason"
+        tests:
+          - not_null
+      - name: reason_type
+        description: "Type of sales reason"
+
+  - name: stg_adventure_works__sales_order_sales_reasons
+    description: "Junction table linking sales orders to sales reasons"
+    columns:
+      - name: sales_order_id
+        description: "Reference to sales order"
+        tests:
+          - not_null
+      - name: sales_reason_id
+        description: "Reference to sales reason"
+        tests:
+          - not_null
+
+  - name: stg_adventure_works__credit_cards
+    description: "Staging model for credit card information"
+    columns:
+      - name: credit_card_id
+        description: "Unique identifier for credit card"
+        tests:
+          - not_null
+          - unique
+      - name: card_type
+        description: "Type of credit card"
+        tests:
+          - not_null
+      - name: card_number
+        description: "Credit card number"
+      - name: exp_month
+        description: "Expiration month"
+      - name: exp_year
+        description: "Expiration year"
+
+  - name: stg_adventure_works__salespeople
+    description: "Staging model for salesperson information"
+    columns:
+      - name: business_entity_id
+        description: "Unique identifier for salesperson"
+        tests:
+          - not_null
+          - unique
+      - name: territory_id
+        description: "Reference to territory"
+      - name: sales_quota
+        description: "Sales quota for salesperson"
+      - name: bonus
+        description: "Bonus amount"
+      - name: commission_pct
+        description: "Commission percentage"
+      - name: sales_ytd
+        description: "Sales year to date"
+      - name: sales_last_year
+        description: "Sales from last year"
+
+  - name: stg_adventure_works__territories
+    description: "Staging model for sales territories"
+    columns:
+      - name: territory_id
+        description: "Unique identifier for territory"
+        tests:
+          - not_null
+          - unique
+      - name: territory_name
+        description: "Name of the territory"
+        tests:
+          - not_null
+      - name: country_region_code
+        description: "Reference to country region"
+      - name: territory_group
+        description: "Group classification for territory"

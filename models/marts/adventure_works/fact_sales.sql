@@ -23,10 +23,10 @@ with
         , freight
         , total_due
         , is_online_order
+        , line_total
         , order_qty
         , unit_price
         , unit_price_discount
-        , line_total
         , customer_sk
         , customer_id
         , customer_name
