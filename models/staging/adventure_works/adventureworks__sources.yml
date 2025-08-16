@@ -8,6 +8,6 @@ sources:
       - name: product
       - name: ProductSubcategory
       - name: ProductCategory
-      - name: Customer
-      - name: Person
-      - name: PersonType
+      - name: customer
+      - name: person
+      - name: persontype
