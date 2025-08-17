@@ -1,10 +1,3 @@
-{{
-    config(
-        materialized = "table"
-        , description = "Salespeople dimension table containing salesperson information, performance metrics, and territory details"
-    )
-}}
-
 with
     source as (
         select * from {{ ref("int_adventure_works__salespeople") }}

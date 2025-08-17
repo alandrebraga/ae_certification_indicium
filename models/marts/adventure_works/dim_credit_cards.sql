@@ -1,10 +1,3 @@
-{{
-    config(
-        materialized = "table"
-        , description = "Credit cards dimension table containing credit card information and types"
-    )
-}}
-
 with
     source as (
         select * from {{ ref("stg_adventure_works__credit_cards") }}

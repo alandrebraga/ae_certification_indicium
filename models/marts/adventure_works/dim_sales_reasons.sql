@@ -1,10 +1,3 @@
-{{
-    config(
-        materialized = "table"
-        , description = "Sales reasons dimension table containing sales reason information and categorization"
-    )
-}}
-
 with
     source as (
         select * from {{ ref("int_adventure_works__sales_reasons") }}
