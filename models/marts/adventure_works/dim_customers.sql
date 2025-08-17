@@ -13,12 +13,8 @@ with
     select 
         customer_sk
         , customer_id
-        , store_id
-        , territory_id
+        , territory_name
+        , country
         , customer_name
         , person_type
-        , territory_name
-        , territory_group
-        , state
-        , country
     from source

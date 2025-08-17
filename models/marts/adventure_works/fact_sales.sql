@@ -12,6 +12,9 @@ with
 
     select 
         sales_order_detail_sk
+        , customer_fk
+        , sales_reason_fk
+        , product_fk
         , sales_order_id
         , sales_order_detail_id
         , order_date
@@ -23,34 +26,17 @@ with
         , freight
         , total_due
         , is_online_order
-        , line_total
         , order_qty
         , unit_price
         , unit_price_discount
-        , customer_sk
-        , customer_id
-        , customer_name
-        , state
-        , country
-        , territory_name
-        , salesperson_sk
-        , salesperson_name
+        , line_total
         , credit_card_id
         , card_type
-        , product_sk
-        , product_id
-        , product_name
-        , product_category_name
-        , product_subcategory_name
-        , sales_reason_id
-        , sales_reason_name
-        , reason_type
         , gross_amount
         , net_amount
         , order_year
         , order_month
         , order_day
-        -- Additional calculated metrics for business questions
         , case 
             when unit_price_discount > 0 then true 
             else false 
