@@ -41,23 +41,32 @@ with
         group by all
     )
 
+    , not_informed_reason_id as (
+        select 
+            * exclude(sales_reason_id)
+            , case 
+                when sales_reason_id = '' then '-1' else sales_reason_id
+              end as sales_reason_id
+        from joined_reason
+    )
+
     , joined_table as (
         select 
-            {{ dbt_utils.generate_surrogate_key(['joined_reason.sales_order_id', 'sales_order_details.sales_order_detail_id', 'customers.customer_sk', 'products.product_sk']) }} as sales_order_detail_sk
-            , {{ dbt_utils.generate_surrogate_key(['joined_reason.sales_reason_id']) }} as sales_reason_fk
+            {{ dbt_utils.generate_surrogate_key(['not_informed_reason_id.sales_order_id', 'sales_order_details.sales_order_detail_id', 'customers.customer_sk', 'products.product_sk']) }} as sales_order_detail_sk
+            , {{ dbt_utils.generate_surrogate_key(['not_informed_reason_id.sales_reason_id']) }} as sales_reason_fk
             , customers.customer_sk as customer_fk
             , products.product_sk as product_fk
-            , joined_reason.sales_order_id
+            , not_informed_reason_id.sales_order_id
             , sales_order_details.sales_order_detail_id
-            , joined_reason.order_date
-            , joined_reason.due_date
-            , joined_reason.ship_date
-            , joined_reason.order_status
-            , joined_reason.subtotal
-            , joined_reason.tax_amount
-            , joined_reason.freight
-            , joined_reason.total_due
-            , joined_reason.is_online_order
+            , not_informed_reason_id.order_date
+            , not_informed_reason_id.due_date
+            , not_informed_reason_id.ship_date
+            , not_informed_reason_id.order_status
+            , not_informed_reason_id.subtotal
+            , not_informed_reason_id.tax_amount
+            , not_informed_reason_id.freight
+            , not_informed_reason_id.total_due
+            , not_informed_reason_id.is_online_order
             , sales_order_details.order_qty
             , sales_order_details.unit_price
             , sales_order_details.unit_price_discount
@@ -65,16 +74,16 @@ with
             , credit_cards.card_type
             , sum((sales_order_details.unit_price * sales_order_details.order_qty)) as gross_amount
             , sum((sales_order_details.unit_price * sales_order_details.order_qty * (1 - sales_order_details.unit_price_discount))) as net_amount
-            , extract(year from joined_reason.order_date) as order_year
-            , extract(month from joined_reason.order_date) as order_month
-            , extract(day from joined_reason.order_date) as order_day
-        from joined_reason
-        inner join sales_order_details on sales_order_details.sales_order_id = joined_reason.sales_order_id
-        left join customers on customers.customer_id = joined_reason.customer_id
-        left join credit_cards on credit_cards.credit_card_id = joined_reason.credit_card_id
+            , extract(year from not_informed_reason_id.order_date) as order_year
+            , extract(month from not_informed_reason_id.order_date) as order_month
+            , extract(day from not_informed_reason_id.order_date) as order_day
+        from not_informed_reason_id
+        inner join sales_order_details on sales_order_details.sales_order_id = not_informed_reason_id.sales_order_id
+        left join customers on customers.customer_id = not_informed_reason_id.customer_id
+        left join credit_cards on credit_cards.credit_card_id = not_informed_reason_id.credit_card_id
         left join products on products.product_id = sales_order_details.product_id
         group by all
     )
 
-    select * 
+    select *
     from joined_table
