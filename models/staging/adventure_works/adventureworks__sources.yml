@@ -6,18 +6,49 @@ sources:
     schema: raw_adventure_works 
     tables:
       - name: product
+        description: "Product catalog containing all manufactured and purchased items sold by Adventure Works, including bikes, components, clothing, and accessories with detailed specifications and pricing information."
+        
       - name: ProductSubcategory
+        description: "Product subcategory classifications that group similar products within broader categories (e.g., Mountain Bikes, Road Bikes within the Bikes category)."
+        
       - name: ProductCategory
+        description: "Top-level product category classifications used to organize the product hierarchy (e.g., Bikes, Components, Clothing, Accessories)."
+        
       - name: customer
+        description: "Customer master data containing information about individuals and companies that purchase Adventure Works products, including customer demographics and account details."
+        
       - name: person
+        description: "Person entity storing individual contact information including names, email addresses, and demographic data for customers, employees, and other contacts."
+        
       - name: salesorderheader
+        description: "Sales order header information containing order-level details such as order date, customer, salesperson, billing/shipping addresses, and order totals."
+        
       - name: salesorderdetail
+        description: "Individual line items for each sales order, including product details, quantities, unit prices, and line-level calculations."
+        
       - name: salesreason
+        description: "Lookup table containing predefined reasons why customers made purchases (e.g., Quality, Price, Manufacturer, Review, Advertisement)."
+        
       - name: salesorderheadersalesreason
+        description: "Bridge table linking sales orders to the reasons customers made their purchases, supporting many-to-many relationships between orders and sales reasons."
+        
       - name: address
+        description: "Address information for customers, employees, and vendors including street addresses, cities, postal codes, and address types (billing, shipping, home, business)."
+        
       - name: stateprovince
+        description: "State and province reference data including state/province names, codes, country associations, and regional information."
+        
       - name: countryregion
+        description: "Country and region reference data containing country names, country codes, and regional groupings for international operations."
+        
       - name: salesperson
+        description: "Sales personnel information including sales quotas, year-to-date sales, commission rates, and territory assignments for Adventure Works sales representatives."
+        
       - name: employee
+        description: "Employee master data containing HR information such as hire dates, job titles, organizational hierarchy, demographics, and employment status."
+        
       - name: creditcard
+        description: "Customer credit card information including card types (Visa, MasterCard, etc.) and masked card numbers for payment processing."
+        
       - name: salesterritory
+        description: "Sales territory definitions including territory names, regional groupings, sales quotas, and year-to-date performance metrics for geographic sales management."
