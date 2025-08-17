@@ -10,7 +10,6 @@ sources:
       - name: ProductCategory
       - name: customer
       - name: person
-      - name: persontype
       - name: salesorderheader
       - name: salesorderdetail
       - name: salesreason
@@ -21,5 +20,4 @@ sources:
       - name: salesperson
       - name: employee
       - name: creditcard
-      - name: salesorderheadercreditcard
       - name: salesterritory
