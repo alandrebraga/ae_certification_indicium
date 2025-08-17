@@ -30,7 +30,6 @@ with
         , unit_price
         , unit_price_discount
         , line_total
-        , credit_card_id
         , card_type
         , gross_amount
         , net_amount
