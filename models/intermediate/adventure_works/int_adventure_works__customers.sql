@@ -4,11 +4,11 @@ with
     )
     
     , person as (
-        select * from {{ ref("stg_adventure_works__person")}}
+        select * from {{ ref('stg_adventure_works__person')}}
     )
 
     , territores as (
-        select * from {{ ref("stg_adventure_works__territories")}}
+        select * from {{ ref('stg_adventure_works__territories')}}
     )
 
     , joined_table as (
@@ -17,7 +17,7 @@ with
             , customers.customer_id
             , territores.territory_name
             , territores.country_region_code as country
-            , person.person_name as customer_name
+            , coalesce(person.person_name, 'Not Informed') as customer_name
             , person.person_type as person_type
         from customers
         left join person on person.person_id = customers.person_id

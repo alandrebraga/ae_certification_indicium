@@ -71,12 +71,10 @@ models:
         tests:
           - not_null
           - unique
-      - name: address_line_1
+      - name: address_name
         description: "Primary address line"
         tests:
           - not_null
-      - name: address_line_2
-        description: "Secondary address line"
       - name: city
         description: "City name"
         tests:
