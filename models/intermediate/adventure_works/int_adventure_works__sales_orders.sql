@@ -76,7 +76,6 @@ with
             , sales_order_details.order_qty
             , sales_order_details.unit_price
             , sales_order_details.unit_price_discount
-            , sales_order_details.line_total
             , coalesce(credit_cards.card_type, 'Not Informed') as card_type
             , sum((sales_order_details.unit_price * sales_order_details.order_qty)) as gross_amount
             , sum((sales_order_details.unit_price * sales_order_details.order_qty * (1 - sales_order_details.unit_price_discount))) as net_amount
