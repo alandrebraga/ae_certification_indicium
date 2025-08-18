@@ -1,0 +1,56 @@
+version: 2
+
+models:
+  - name: int_adventure_works__customers
+    description: "Intermediate model for customers with surrogate key"
+    columns:
+      - name: customer_sk
+        description: "Surrogate key for customer"
+        tests:
+          - not_null
+          - unique
+
+  - name: int_adventure_works__products
+    description: "Intermediate model for products with surrogate key"
+    columns:
+      - name: product_sk
+        description: "Surrogate key for product"
+        tests:
+          - not_null
+          - unique
+
+  - name: int_adventure_works__sales_orders
+    description: "Intermediate model for sales orders with surrogate key"
+    columns:
+      - name: sales_order_detail_sk
+        description: "Surrogate key for sales order detail"
+        tests:
+          - not_null
+          - unique
+
+  - name: int_adventure_works__sales_reasons
+    description: "Intermediate model for sales reasons with surrogate key"
+    columns:
+      - name: sales_reason_sk
+        description: "Surrogate key for sales reason"
+        tests:
+          - not_null
+          - unique
+
+  - name: int_adventure_works__salespeople
+    description: "Intermediate model for salespeople with surrogate key"
+    columns:
+      - name: salesperson_sk
+        description: "Surrogate key for salesperson"
+        tests:
+          - not_null
+          - unique
+
+  - name: int_adventure_works__address
+    description: "Intermediate model for address with surrogate key"
+    columns:
+      - name: address_sk
+        description: "Surrogate key for address"
+        tests:
+          - not_null
+          - unique

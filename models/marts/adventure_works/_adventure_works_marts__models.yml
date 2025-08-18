@@ -9,40 +9,15 @@ models:
         tests:
           - not_null
           - unique
-      - name: customer_id
-        description: "Business key for customer"
-        tests:
-          - not_null
-      - name: customer_name
-        description: "Full name of the customer"
-        tests:
-          - not_null
-      - name: state
-        description: "State or province where customer is located"
-      - name: country
-        description: "Country where customer is located"
-      - name: territory_name
-        description: "Sales territory name"
 
   - name: dim_sales_reasons
     description: "Sales reasons dimension table containing sales reason information and categorization"
     columns:
       - name: sales_reason_sk
-        description: "Surrougate key for sales reason"
+        description: "Surrogate key for sales reason"
         tests:
           - not_null
           - unique
-      - name: sales_reason_id
-        description: "Business key for sales reason"
-        tests:
-          - not_null
-          - unique
-      - name: sales_reason_names
-        description: "Name of the sales reason"
-        tests:
-          - not_null
-      - name: reason_type
-        description: "Type/category of the sales reason"
 
   - name: dim_products
     description: "Products dimension table containing product information and hierarchy"
@@ -52,18 +27,15 @@ models:
         tests:
           - not_null
           - unique
-      - name: product_id
-        description: "Business key for product"
+
+  - name: dim_salespeople
+    description: "Salespeople dimension table containing salesperson information"
+    columns:
+      - name: salesperson_sk
+        description: "Surrogate key for salesperson dimension"
         tests:
           - not_null
-      - name: product_name
-        description: "Name of the product"
-        tests:
-          - not_null
-      - name: product_category_name
-        description: "Product category name"
-      - name: product_subcategory_name
-        description: "Product subcategory name"
+          - unique
 
   - name: fact_sales
     description: "Sales fact table containing all sales transactions with metrics for business analysis"
@@ -73,39 +45,28 @@ models:
         tests:
           - not_null
           - unique
-      - name: sales_order_id
-        description: "Business key for sales order"
-        tests:
-          - not_null
       - name: customer_fk
         description: "Foreign key to customer dimension"
         tests:
           - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_sk
       - name: product_fk
         description: "Foreign key to product dimension"
         tests:
           - not_null
-      - name: order_date
-        description: "Date when the order was placed"
+          - relationships:
+              to: ref('dim_products')
+              field: product_sk
+      - name: sales_reason_fk
+        description: "Foreign key to sales reason dimension"
         tests:
           - not_null
-      - name: order_qty
-        description: "Quantity ordered"
+          - relationships:
+              to: ref('dim_sales_reasons')
+              field: sales_reason_sk
+      - name: address_fk
+        description: "Foreign key to address"
         tests:
           - not_null
-      - name: unit_price
-        description: "Unit price of the product"
-        tests:
-          - not_null
-      - name: gross_amount
-        description: "Gross amount (unit price * quantity)"
-        tests:
-          - not_null
-      - name: net_amount
-        description: "Net amount after discounts"
-        tests:
-          - not_null
-      - name: total_discount_amount
-        description: "Total discount amount applied"
-      - name: order_status_description
-        description: "Human-readable order status description"

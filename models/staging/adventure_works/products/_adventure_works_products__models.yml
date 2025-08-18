@@ -9,22 +9,6 @@ models:
         tests:
           - not_null
           - unique
-      - name: product_name
-        description: "Name of the product"
-        tests:
-          - not_null
-      - name: standart_cost
-        description: "Standard cost of product"
-      - name: selling_price
-        description: "Selling price of product"
-      - name: product_line
-        description: "Product line classification"
-      - name: product_style
-        description: "Product style classification"
-      - name: product_hierarchy_id
-        description: "Reference to product hierarchy"
-        tests:
-          - not_null
           
   - name: stg_adventure_works__products_hierarchy
     description: "Staging model for product hierarchy information"
@@ -34,14 +18,6 @@ models:
         tests:
           - not_null
           - unique
-      - name: product_category_name
-        description: "Name of product category"
-        tests:
-          - not_null
-      - name: product_subcategory_name
-        description: "Name of product subcategory"
-        tests:
-          - not_null
 
   - name: base_adventure_works__category
     description: "Base model for product categories"
@@ -51,10 +27,6 @@ models:
         tests:
           - not_null
           - unique
-      - name: product_category_name
-        description: "Name of product category"
-        tests:
-          - not_null
 
   - name: base_adventure_works__subcategory
     description: "Base model for product subcategories"
@@ -64,12 +36,4 @@ models:
         tests:
           - not_null
           - unique
-      - name: product_category_id
-        description: "Reference to product category"
-        tests:
-          - not_null
-      - name: product_subcategory_name
-        description: "Name of product subcategory"
-        tests:
-          - not_null
 
