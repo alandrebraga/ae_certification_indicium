@@ -1,0 +1,69 @@
+---
+config:
+  theme: default
+  layout: dagre
+---
+erDiagram
+    DIM_customers["DIM_CUSTOMERS (SOURCE: CUSTOMER, PERSON, SALESTERRITORY)"] {
+        int customer_sk PK
+        int customer_id
+        string territory_name
+        string country
+        string customer_name
+        string person_type
+    }
+    DIM_products["DIM_PRODUCTS (SOURCE: PRODUCT, PRODUCTCATEGORY, PRODUCTSUBCATEGORY)"] {
+        int product_sk PK
+        int product_id
+        string product_name
+        float standart_cost
+        float selling_price
+        int product_hierarchy_id
+        string product_category_name
+        string product_subcategory_name
+    }
+    DIM_sales_reasons["DIM_SALES_REASONS (SOURCE: SALESREASON)"] {
+        int sales_reason_sk PK
+        int sales_reason_id
+        string sales_reason_names
+    }
+    DIM_salespeople["DIM_SALESPEOPLE (SOURCE: SALESPERSON, EMPLOYEE, SALESTERRITORY)"] {
+        int salesperson_sk PK
+        int business_entity_id
+        int territory_id
+        float sales_quota
+        float bonus
+        float commission_pct
+        float sales_ytd
+        float sales_last_year
+        string salesperson_name
+        string job_title
+        datetime hire_date
+        string territory_name
+        string territory_group
+    }
+    FACT_sales["FACT_SALES (SOURCE: SALESORDERHEADER, SALESORDERDETAIL, SALESORDERHEADERSALESREASON, ADDRESS)"] {
+        int sales_order_detail_sk PK
+        int customer_fk FK
+        int sales_reason_fk FK
+        int product_fk FK
+        int address_fk FK
+        int sales_order_id
+        datetime order_date
+        string order_status
+        int order_qty
+        float unit_price
+        float unit_price_discount
+        float line_total
+        string card_type
+        float gross_amount
+        float net_amount
+        int order_year
+        int order_month
+        int order_day
+        string order_status_description
+    }
+    DIM_customers ||--o{ FACT_sales : "customer_fk"
+    DIM_products ||--o{ FACT_sales : "product_fk"
+    DIM_sales_reasons ||--o{ FACT_sales : "sales_reason_fk"
+    DIM_salespeople ||--o{ FACT_sales : "salesperson_fk"
