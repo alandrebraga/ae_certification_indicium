@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: stg_adventure_works__products
+    description: "Staging model for product information"
+    columns:
+      - name: product_id
+        description: "Unique identifier for product"
+        tests:
+          - not_null
+          - unique
+          
+  - name: stg_adventure_works__products_hierarchy
+    description: "Staging model for product hierarchy information"
+    columns:
+      - name: product_hierarchy_id
+        description: "Unique identifier for product hierarchy"
+        tests:
+          - not_null
+          - unique
+
+  - name: base_adventure_works__category
+    description: "Base model for product categories"
+    columns:
+      - name: product_category_id
+        description: "Unique identifier for product category"
+        tests:
+          - not_null
+          - unique
+
+  - name: base_adventure_works__subcategory
+    description: "Base model for product subcategories"
+    columns:
+      - name: product_subcategory_id
+        description: "Unique identifier for product subcategory"
+        tests:
+          - not_null
+          - unique
+

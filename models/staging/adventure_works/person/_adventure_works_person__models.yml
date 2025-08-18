@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: stg_adventure_works__person
+    description: "Staging model for person information"
+    columns:
+      - name: person_id
+        description: "Unique identifier for person"
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_adventure_works__employees
+    description: "Staging model for employee information"
+    columns:
+      - name: business_entity_id
+        description: "Unique identifier for employee"
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_adventure_works__addresses
+    description: "Staging model for address information"
+    columns:
+      - name: address_id
+        description: "Unique identifier for address"
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_adventure_works__state_provinces
+    description: "Staging model for state/province information"
+    columns:
+      - name: state_province_id
+        description: "Unique identifier for state/province"
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_adventure_works__country_regions
+    description: "Staging model for country/region information"
+    columns:
+      - name: country_region_code
+        description: "Unique identifier for country/region"
+        tests:
+          - not_null
+          - unique

@@ -1,0 +1,153 @@
+version: 2
+
+sources:
+  - name: adventure_works
+    database: fea24_11  
+    schema: raw_adventure_works 
+    tables:
+      - name: product
+        description: "Product catalog containing all manufactured and purchased items sold by Adventure Works, including bikes, components, clothing, and accessories with detailed specifications and pricing information."
+        columns:
+          - name: ProductID
+            description: "Primary key for product"
+            tests:
+              - not_null
+              - unique
+        
+      - name: ProductSubcategory
+        description: "Product subcategory classifications that group similar products within broader categories (e.g., Mountain Bikes, Road Bikes within the Bikes category)."
+        columns:
+          - name: ProductSubcategoryID
+            description: "Primary key for product subcategory"
+            tests:
+              - not_null
+              - unique
+        
+      - name: ProductCategory
+        description: "Top-level product category classifications used to organize the product hierarchy (e.g., Bikes, Components, Clothing, Accessories)."
+        columns:
+          - name: ProductCategoryID
+            description: "Primary key for product category"
+            tests:
+              - not_null
+              - unique
+        
+      - name: customer
+        description: "Customer master data containing information about individuals and companies that purchase Adventure Works products, including customer demographics and account details."
+        columns:
+          - name: CustomerID
+            description: "Primary key for customer"
+            tests:
+              - not_null
+              - unique
+        
+      - name: person
+        description: "Person entity storing individual contact information including names, email addresses, and demographic data for customers, employees, and other contacts."
+        columns:
+          - name: BusinessEntityID
+            description: "Primary key for person"
+            tests:
+              - not_null
+              - unique
+        
+      - name: salesorderheader
+        description: "Sales order header information containing order-level details such as order date, customer, salesperson, billing/shipping addresses, and order totals."
+        columns:
+          - name: SalesOrderID
+            description: "Primary key for sales order header"
+            tests:
+              - not_null
+              - unique
+        
+      - name: salesorderdetail
+        description: "Individual line items for each sales order, including product details, quantities, unit prices, and line-level calculations."
+        columns:
+          - name: SalesOrderDetailID
+            description: "Primary key for sales order detail"
+            tests:
+              - not_null
+              - unique
+        
+      - name: salesreason
+        description: "Lookup table containing predefined reasons why customers made purchases (e.g., Quality, Price, Manufacturer, Review, Advertisement)."
+        columns:
+          - name: SalesReasonID
+            description: "Primary key for sales reason"
+            tests:
+              - not_null
+              - unique
+        
+      - name: salesorderheadersalesreason
+        description: "Bridge table linking sales orders to the reasons customers made their purchases, supporting many-to-many relationships between orders and sales reasons."
+        columns:
+          - name: SalesOrderID
+            description: "Part of composite key for sales order sales reason"
+            tests:
+              - not_null
+          - name: SalesReasonID
+            description: "Part of composite key for sales order sales reason"
+            tests:
+              - not_null
+        
+      - name: address
+        description: "Address information for customers, employees, and vendors including street addresses, cities, postal codes, and address types (billing, shipping, home, business)."
+        columns:
+          - name: AddressID
+            description: "Primary key for address"
+            tests:
+              - not_null
+              - unique
+        
+      - name: stateprovince
+        description: "State and province reference data including state/province names, codes, country associations, and regional information."
+        columns:
+          - name: StateProvinceID
+            description: "Primary key for state/province"
+            tests:
+              - not_null
+              - unique
+        
+      - name: countryregion
+        description: "Country and region reference data containing country names, country codes, and regional groupings for international operations."
+        columns:
+          - name: CountryRegionCode
+            description: "Primary key for country/region"
+            tests:
+              - not_null
+              - unique
+        
+      - name: salesperson
+        description: "Sales personnel information including sales quotas, year-to-date sales, commission rates, and territory assignments for Adventure Works sales representatives."
+        columns:
+          - name: BusinessEntityID
+            description: "Primary key for salesperson"
+            tests:
+              - not_null
+              - unique
+        
+      - name: employee
+        description: "Employee master data containing HR information such as hire dates, job titles, organizational hierarchy, demographics, and employment status."
+        columns:
+          - name: BusinessEntityID
+            description: "Primary key for employee"
+            tests:
+              - not_null
+              - unique
+        
+      - name: creditcard
+        description: "Customer credit card information including card types (Visa, MasterCard, etc.) and masked card numbers for payment processing."
+        columns:
+          - name: CreditCardID
+            description: "Primary key for credit card"
+            tests:
+              - not_null
+              - unique
+        
+      - name: salesterritory
+        description: "Sales territory definitions including territory names, regional groupings, sales quotas, and year-to-date performance metrics for geographic sales management."
+        columns:
+          - name: TerritoryID
+            description: "Primary key for sales territory"
+            tests:
+              - not_null
+              - unique

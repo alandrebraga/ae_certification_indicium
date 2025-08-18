@@ -1,0 +1,56 @@
+version: 2
+
+models:
+  - name: stg_adventure_works__customers
+    description: "Staging model for customers with person and territory information"
+    columns:
+      - name: customer_id
+        description: "Unique identifier for customer"
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_adventure_works__sales_orders
+    description: "Staging model for sales order headers"
+    columns:
+      - name: sales_order_id
+        description: "Unique identifier for sales order"
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_adventure_works__sales_order_details
+    description: "Staging model for sales order line items"
+    columns:
+      - name: sales_order_detail_id
+        description: "Unique identifier for order detail line"
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_adventure_works__sales_reasons
+    description: "Staging model for sales reasons"
+    columns:
+      - name: sales_reason_id
+        description: "Unique identifier for sales reason"
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_adventure_works__credit_cards
+    description: "Staging model for credit card information"
+    columns:
+      - name: credit_card_id
+        description: "Unique identifier for credit card"
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_adventure_works__territories
+    description: "Staging model for sales territories"
+    columns:
+      - name: territory_id
+        description: "Unique identifier for territory"
+        tests:
+          - not_null
+          - unique

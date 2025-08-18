@@ -1,0 +1,63 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "Customer dimension table containing customer information, location, and territory details"
+    columns:
+      - name: customer_sk
+        description: "Surrogate key for customer dimension"
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_sales_reasons
+    description: "Sales reasons dimension table containing sales reason information and categorization"
+    columns:
+      - name: sales_reason_sk
+        description: "Surrogate key for sales reason"
+        tests:
+          - not_null
+          - unique
+
+  - name: dim_products
+    description: "Products dimension table containing product information and hierarchy"
+    columns:
+      - name: product_sk
+        description: "Surrogate key for product dimension"
+        tests:
+          - not_null
+          - unique
+
+  - name: fact_sales
+    description: "Sales fact table containing all sales transactions with metrics for business analysis"
+    columns:
+      - name: sales_order_detail_sk
+        description: "Surrogate key for sales order detail"
+        tests:
+          - not_null
+          - unique
+      - name: customer_fk
+        description: "Foreign key to customer dimension"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_sk
+      - name: product_fk
+        description: "Foreign key to product dimension"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_products')
+              field: product_sk
+      - name: sales_reason_fk
+        description: "Foreign key to sales reason dimension"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_sales_reasons')
+              field: sales_reason_sk
+      - name: address_fk
+        description: "Foreign key to address"
+        tests:
+          - not_null
