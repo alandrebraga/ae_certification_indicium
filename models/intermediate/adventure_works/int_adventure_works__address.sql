@@ -13,7 +13,8 @@ with
 
     , joined_data as (
         select 
-             address.address_id
+            {{ dbt_utils.generate_surrogate_key(['address.address_id']) }} as address_sk
+            , address.address_id
             , address.address_name
             , address.city
             , state_province.state_province_name

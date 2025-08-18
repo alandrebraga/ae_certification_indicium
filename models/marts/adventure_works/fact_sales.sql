@@ -15,6 +15,7 @@ with
         , customer_fk
         , sales_reason_fk
         , product_fk
+        , address_fk
         , sales_order_id
         , sales_order_detail_id
         , order_date

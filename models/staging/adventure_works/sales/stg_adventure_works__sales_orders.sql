@@ -9,6 +9,7 @@ with
             , cast(customerid as string) as customer_id
             , cast(salespersonid as string) as salesperson_id
             , cast(territoryid as string) as territory_id
+            , cast(billtoaddressid as string) as address_id
             , cast(creditcardid as string) as credit_card_id
             , cast(orderdate as date) as order_date
             , cast(duedate as date) as due_date

@@ -31,6 +31,10 @@ with
         select * from {{ ref('int_adventure_works__products') }}
     )
 
+    , address as (
+        select * from {{ ref('int_adventure_works__address') }}
+    )
+
     , joined_reason as (
         select 
             sales_orders.*
@@ -56,6 +60,7 @@ with
             , {{ dbt_utils.generate_surrogate_key(['not_informed_reason_id.sales_reason_id']) }} as sales_reason_fk
             , customers.customer_sk as customer_fk
             , products.product_sk as product_fk
+            , address.address_sk as address_fk
             , not_informed_reason_id.sales_order_id
             , sales_order_details.sales_order_detail_id
             , not_informed_reason_id.order_date
@@ -67,6 +72,7 @@ with
             , not_informed_reason_id.freight
             , not_informed_reason_id.total_due
             , not_informed_reason_id.is_online_order
+            , not_informed_reason_id.address_id
             , sales_order_details.order_qty
             , sales_order_details.unit_price
             , sales_order_details.unit_price_discount
@@ -82,6 +88,7 @@ with
         left join customers on customers.customer_id = not_informed_reason_id.customer_id
         left join credit_cards on credit_cards.credit_card_id = not_informed_reason_id.credit_card_id
         left join products on products.product_id = sales_order_details.product_id
+        left join address on address.address_id = not_informed_reason_id.address_id
         group by all
     )
 
