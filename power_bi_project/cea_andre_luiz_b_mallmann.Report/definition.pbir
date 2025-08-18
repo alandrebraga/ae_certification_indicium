@@ -1,8 +1,0 @@
-{
-  "version": "4.0",
-  "datasetReference": {
-    "byPath": {
-      "path": "../cea_andre_luiz_b_mallmann.SemanticModel"
-    }
-  }
-}
