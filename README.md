@@ -1,47 +1,8 @@
-# Adventure Works Data Warehouse
+# Adventure Works Data Warehouse (Certificado Indicium AE)
 
 ## Project Overview
 
 This project implements a comprehensive data warehouse for Adventure Works, a manufacturing company, using DBT (Data Build Tool). The data warehouse is designed to answer critical business questions about sales performance, customer behavior, and product performance.
-
-## Business Context
-
-Carlos, the project manager, has provided a key validation requirement:
-- **2011 Gross Sales**: $12,646,112.16
-
-This value is used as a custom test to ensure data accuracy in the models.
-
-## Business Questions Addressed
-
-### 1. Sales Metrics by Dimensions
-**Question**: What is the number of orders, quantity purchased, and total negotiated value by product, credit card type, sales reason, sale date, customer, status, city, state, and country?
-
-**Analysis**: `analyses/adventure_works/01_sales_by_dimensions.sql`
-
-### 2. Average Ticket Analysis
-**Question**: Which products have the highest average ticket by month, year, city, state, and country? (Average ticket = Gross revenue - discounts / number of orders)
-
-**Analysis**: `analyses/adventure_works/02_average_ticket_by_dimensions.sql`
-
-### 3. Top 10 Customers by Value
-**Question**: Who are the top 10 customers by total negotiated value, filtered by product, credit card type, sales reason, sale date, status, city, state, and country?
-
-**Analysis**: `analyses/adventure_works/03_top_10_customers_by_value.sql`
-
-### 4. Top 5 Cities by Value
-**Question**: What are the top 5 cities by total negotiated value, filtered by product, credit card type, sales reason, sale date, customer, status, city, state, and country?
-
-**Analysis**: `analyses/adventure_works/04_top_5_cities_by_value.sql`
-
-### 5. Time Series Analysis
-**Question**: What is the number of orders, quantity purchased, and total negotiated value by month and year? (Hint: time series chart)
-
-**Analysis**: `analyses/adventure_works/05_time_series_analysis.sql`
-
-### 6. Promotion Sales Analysis
-**Question**: Which product has the highest quantity of units purchased for the "Promotion" sales reason?
-
-**Analysis**: `analyses/adventure_works/06_products_by_promotion_sales.sql`
 
 ## Data Architecture
 
