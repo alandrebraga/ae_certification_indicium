@@ -1,10 +1,3 @@
-{{
-    config(
-        materialized = "table"
-        , description = "Sales fact table containing all sales transactions with metrics for business analysis"
-    )
-}}
-
 with
     source as (
         select * from {{ ref("int_adventure_works__sales_orders") }}
