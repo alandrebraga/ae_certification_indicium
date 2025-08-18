@@ -17,31 +17,12 @@ with
         , product_fk
         , address_fk
         , sales_order_id
-        , sales_order_detail_id
         , order_date
-        , due_date
-        , ship_date
         , order_status
-        , subtotal
-        , tax_amount
-        , freight
-        , total_due
-        , is_online_order
-        , order_qty
-        , unit_price
-        , unit_price_discount
-        , line_total
         , card_type
-        , gross_amount
-        , net_amount
         , order_year
         , order_month
         , order_day
-        , case 
-            when unit_price_discount > 0 then true 
-            else false 
-          end as has_discount
-        , (gross_amount - net_amount) as total_discount_amount
         , case 
             when order_status = 1 then 'In Process'
             when order_status = 2 then 'Approved'
@@ -51,4 +32,10 @@ with
             when order_status = 6 then 'Cancelled'
             else 'Unknown'
           end as order_status_description
+        , sum(order_qty) as order_qty
+        , sum(unit_price) as unit_price
+        , sum(line_total) as line_total
+        , sum(gross_amount) as gross_amount 
+        , sum(net_amount) as net_amount
     from source
+    group by all
