@@ -37,15 +37,6 @@ models:
           - not_null
           - unique
 
-  - name: int_adventure_works__salespeople
-    description: "Intermediate model for salespeople with surrogate key"
-    columns:
-      - name: salesperson_sk
-        description: "Surrogate key for salesperson"
-        tests:
-          - not_null
-          - unique
-
   - name: int_adventure_works__address
     description: "Intermediate model for address with surrogate key"
     columns:

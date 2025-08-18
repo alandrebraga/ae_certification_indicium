@@ -28,15 +28,6 @@ models:
           - not_null
           - unique
 
-  - name: dim_salespeople
-    description: "Salespeople dimension table containing salesperson information"
-    columns:
-      - name: salesperson_sk
-        description: "Surrogate key for salesperson dimension"
-        tests:
-          - not_null
-          - unique
-
   - name: fact_sales
     description: "Sales fact table containing all sales transactions with metrics for business analysis"
     columns:

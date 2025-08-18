@@ -25,10 +25,10 @@ with
             when order_status = 6 then 'Cancelled'
             else 'Unknown'
           end as order_status_description
-        , sum(order_qty) as order_qty
-        , sum(unit_price) as unit_price
-        , sum(line_total) as line_total
-        , sum(gross_amount) as gross_amount 
-        , sum(net_amount) as net_amount
+        , cast(sum(order_qty) as integer) as order_qty
+        , cast(sum(unit_price) as float) as unit_price
+        , cast(sum(line_total) as float) as line_total
+        , cast(sum(gross_amount) as float) as gross_amount 
+        , cast(sum(net_amount) as float) as net_amount
     from source
     group by all
