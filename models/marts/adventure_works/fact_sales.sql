@@ -27,7 +27,6 @@ with
           end as order_status_description
         , cast(sum(order_qty) as integer) as order_qty
         , cast(sum(unit_price) as float) as unit_price
-        , cast(sum(line_total) as float) as line_total
         , cast(sum(gross_amount) as float) as gross_amount 
         , cast(sum(net_amount) as float) as net_amount
     from source
