@@ -1,8 +1,19 @@
+{%-
+    set order_status = {
+        1: "In Proccess",
+        2: "Approved",
+        3: "Backordered",
+        4: "Rejected",
+        5: "Shipped",
+        6: "Cancelled"
+    }
+-%}
+
 with
     source as (
         select * from {{ ref("int_adventure_works__sales_orders") }}
     )
-
+    
     select 
         sales_order_detail_sk
         , customer_fk
@@ -25,6 +36,13 @@ with
             when order_status = 6 then 'Cancelled'
             else 'Unknown'
           end as order_status_description
+        , {%- for key, value in order_status.items() -%}
+            case when order_status = {{key}} then "{{value}}"
+            {% if loop.last %}
+                else 'Unknown'
+                end as order_status_description_jinja
+            {% endif %}
+          {%- endfor -%}
         , cast(sum(order_qty) as integer) as order_qty
         , cast(sum(unit_price) as float) as unit_price
         , cast(sum(gross_amount) as float) as gross_amount 
